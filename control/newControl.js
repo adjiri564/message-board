@@ -1,16 +1,16 @@
-import {messages} from "./homeControl.js";
+import db from '../db/queries.js'
 
-export const newControl = {
-    get: (req, res)=> {
-        res.render('form',{title: 'New Message'})
-    },
-
-    post:((req, res) => {
-        const messageText = req.body.messageText;
-        const messageUser = req.body.messageUser;
-        messages.push({ text: messageText, user: messageUser, added: new Date() });
-        res.redirect('/');
-    })
-    
+async function createUsernameGet(req, res) {
+    res.render('form')
 }
 
+async function createUsernamePost(req,res) {
+    const {username, text} = req.body;
+    await db.insertUsername(username, text);
+    res.redirect('/');
+}
+
+export default{
+    createUsernameGet,
+    createUsernamePost
+}

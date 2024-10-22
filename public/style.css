@@ -59,4 +59,6 @@ body {
   form button:hover {
     background-color: #555;
   }
-  
+  .delete-form{
+    border: none;
+  }

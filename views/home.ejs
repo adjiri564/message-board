@@ -1,16 +1,22 @@
 <!DOCTYPE html>  
 <html>  
 <head>  
-    <title><%= title %></title>
+    <title>Messages</title>
     <link rel="stylesheet" href="style.css">
 </head>  
 <body>  
-    <h1><%= title %></h1>  
+    <h1>Messages</h1>  
     <ul>  
-        <% messages.forEach((message) => { %>  
+        <% usernames.forEach((username) => { %>  
             <li>  
-                <strong><%= message.user %>:</strong> <%= message.text %> <em>(<%= message.added.toLocaleString() %>)</em>  
+                <strong><%= username.username %>:</strong> <%= username.text %> Timestamp: <em>(<%= username.date %>)</em>
+                <form action="/delete" method="POST" class = 'delete-form' onsubmit="return confirm('Are you sure you want to delete this message?');">
+                    <input type="hidden" name="username" value="<%= username.username %>">
+                    <input type="hidden" name="text" value="<%= username.text %>">
+                    <button type="submit">Delete</button>
+                </form>  
             </li>  
+        
         <% }) %>  
     </ul>  
     <a href="/new">New Message</a>  

@@ -1,9 +1,9 @@
-import { newControl } from "../control/newControl.js";
-import { Router } from "express";
+import dbControl from '../control/newControl.js';
+import { Router } from 'express';
 
 const newRouter = Router();
 
-newRouter.get('/', newControl.get);
-newRouter.post('/', newControl.post)
+newRouter.get('/', dbControl.createUsernameGet)
+newRouter.post('/', dbControl.createUsernamePost)
 
 export default newRouter
